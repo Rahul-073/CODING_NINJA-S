@@ -1,0 +1,12 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+#include "solution.h"
+
+int main() {
+    char input[1000000];
+    cin.getline(input, 1000000);
+    trimSpaces(input);
+    cout << input << endl;
+}
