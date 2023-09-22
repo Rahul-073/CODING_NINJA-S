@@ -2,7 +2,17 @@
 #include <cstring>
 using namespace std;
 
-#include "solution.h"
+
+void trimSpaces(char input[]) {
+    int i =0,j=0;
+    while (input[i]) {
+      if (input[i] != ' ')
+        input[j++] = input[i];
+      i++;
+    }
+    input[j] = '\0';
+    
+}
 
 int main() {
     char input[1000000];
