@@ -1,0 +1,57 @@
+Node*Mid (Node*head){
+	Node*slow=head;
+	Node*fast=head;
+	while(fast->next!=NULL && fast->next->next!=NULL)
+	{
+		slow=slow->next;
+		fast=fast->next->next;
+	}
+	return slow;
+}
+
+Node* sort(Node* p1, Node* p2) {
+    if (p1 == NULL) {
+        return p2;
+    }
+    if (p2 == NULL) {
+        return p1;
+    }
+
+    Node* ans = new Node(0);
+    Node* curr = ans;
+
+    while (p1 != NULL && p2 != NULL) {
+        if (p1->data < p2->data) {
+            curr->next = p1;
+            p1 = p1->next;
+        } else {
+            curr->next = p2;
+            p2 = p2->next;
+        }
+        curr = curr->next;
+    }
+
+    if (p1 != NULL) {
+        curr->next = p1;
+    }
+
+    if (p2 != NULL) {
+        curr->next = p2;
+    }
+
+    return ans->next;
+}
+Node* mergeSort(Node* head) {
+    if (head == NULL || head->next == NULL) {
+        return head;
+    }
+
+    Node* mid = Mid(head);
+    Node* newhead = mid->next;
+    mid->next = NULL;
+
+    Node* l_half = mergeSort(head);
+    Node* r_half = mergeSort(newhead);
+
+    return sort(l_half, r_half);
+}
