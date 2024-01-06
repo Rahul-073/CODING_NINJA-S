@@ -1,0 +1,37 @@
+Node* evenAfterOdd(Node* head) {
+    Node* oddH = NULL;
+    Node* oddT = NULL;
+    Node* evenH = NULL;
+    Node* evenT = NULL;
+
+    Node* temp = head;  
+
+    while (temp != NULL) {
+        if (temp->data % 2 == 1) {
+            // odd
+            if (oddH == NULL) {
+                oddH = temp;
+                oddT = temp;
+            } else {
+                oddT->next = temp;
+                oddT = temp;
+            }
+        } else {
+            if (evenH == NULL) {
+                evenH = temp;
+                evenT = temp;
+            } else {
+                evenT->next = temp;
+                evenT = temp;
+            }
+        }
+        temp = temp->next;
+    }
+
+    if (oddT != NULL) {
+        oddT->next = evenH;
+        return oddH;
+    } else {
+        return evenH;
+    }
+}
